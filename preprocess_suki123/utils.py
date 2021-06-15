@@ -10,6 +10,8 @@ from spacy.lang.en.stop_words import STOP_WORDS as stopwords
 from bs4 import BeautifulSoup
 from textblob import TextBlob
 
+nlp = spacy.load('en_core_web_sm')
+
 def _get_word_counts(x): 
 	length = len(str(x).split())
 	return length 
