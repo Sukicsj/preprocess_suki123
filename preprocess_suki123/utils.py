@@ -1,16 +1,23 @@
-import re 
-import os 
-import sys 
+import re
+import os
+import sys
+import json
 
 import pandas as pd
 import numpy as np
 import spacy
-import unicodedata
 from spacy.lang.en.stop_words import STOP_WORDS as stopwords
 from bs4 import BeautifulSoup
+import unicodedata
 from textblob import TextBlob
+import en_core_web_sm
 
-nlp = spacy.load('en_core_web_sm')
+from sklearn.feature_extraction.text import CountVectorizer
+
+nlp = en_core_web_sm.load()
+
+path = os.path.dirname(os.path.abspath(__file__))
+abbreviations_path = os.path.join(path, 'data','abbreviations_wordlist.json')
 
 def _get_word_counts(x): 
 	length = len(str(x).split())
